@@ -19,15 +19,29 @@ function App() {
         setShowContent(true);
     };
 
-    // 로컬 스토리지 확인하여 이미 방문한 사용자는 문 애니메이션 건너뛰기
+    // localStorage 확인 - 테스트 중에는 항상 애니메이션 표시
     useEffect(() => {
-        const hasVisited = localStorage.getItem('hasVisitedWeddingInvitation');
-        if (hasVisited) {
-            setShowDoorAnimation(false);
-            setShowContent(true);
-        } else {
-            // 첫 방문 기록
-            localStorage.setItem('hasVisitedWeddingInvitation', 'true');
+        try {
+            // 테스트를 위해 일시적으로 localStorage 체크를 비활성화
+            // 실제 배포시에는 아래 주석을 해제하여 방문 기록을 저장할 수 있습니다
+            /*
+            const hasVisited = localStorage.getItem('hasVisitedWeddingInvitation');
+            if (hasVisited) {
+              setShowDoorAnimation(false);
+              setShowContent(true);
+            } else {
+              // 첫 방문 기록
+              localStorage.setItem('hasVisitedWeddingInvitation', 'true');
+            }
+            */
+
+            // 테스트 중에는 항상 애니메이션 표시
+            setShowDoorAnimation(true);
+            setShowContent(false);
+        } catch (error) {
+            // localStorage 접근 오류 시 (Safari 프라이빗 모드 등)
+            setShowDoorAnimation(true);
+            setShowContent(false);
         }
     }, []);
 

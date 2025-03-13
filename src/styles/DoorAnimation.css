@@ -25,6 +25,8 @@
     text-align: center;
     z-index: 1002;
     color: #d4538b;
+    padding: 0 20px;
+    width: 100%;
 }
 
 .door-message h1 {
@@ -55,6 +57,8 @@
     transition: transform 2s cubic-bezier(0.86, 0, 0.07, 1);
     z-index: 1001;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .door.left {
@@ -104,11 +108,31 @@
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.open-button:hover {
+.open-button:hover, .open-button:active {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.skip-button {
+    position: absolute;
+    bottom: 5%;
+    z-index: 1002;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    background-color: transparent;
+    color: #888;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.skip-button:hover, .skip-button:active {
+    background-color: #f5f5f5;
 }
 
 /* 문 손잡이 스타일 */
@@ -118,8 +142,8 @@
     top: 50%;
     width: 20px;
     height: 40px;
-    background-color: #b83e7b;
     border-radius: 10px;
+    background-color: #b83e7b;
 }
 
 .door.left:after {
@@ -130,17 +154,6 @@
     left: 30px;
 }
 
-/* 문에 장식 패턴 추가 */
-.door.left, .door.right {
-    background-image: repeating-linear-gradient(
-            45deg,
-            #fbcfe8,
-            #fbcfe8 10px,
-            #f9bbd8 10px,
-            #f9bbd8 20px
-    );
-}
-
 /* 반응형 스타일 */
 @media (max-width: 768px) {
     .door-message h1 {
@@ -149,5 +162,50 @@
 
     .door-message p {
         font-size: 0.9rem;
+    }
+
+    /* 모바일에서 애니메이션 최적화 */
+    .door.left.open {
+        transform: perspective(800px) rotateY(-105deg);
+    }
+
+    .door.right.open {
+        transform: perspective(800px) rotateY(105deg);
+    }
+
+    .door.left:after, .door.right:after {
+        width: 16px;
+        height: 32px;
+    }
+
+    .door.left:after {
+        right: 20px;
+    }
+
+    .door.right:after {
+        left: 20px;
+    }
+
+    /* 모바일에서 버튼 위치 조정 */
+    .open-button {
+        bottom: 20%;
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .skip-button {
+        bottom: 10%;
+    }
+}
+
+/* 특별히 iOS Safari를 위한 최적화 */
+@supports (-webkit-touch-callout: none) {
+    .door.left.open, .door.right.open {
+        transition: transform 1.5s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    .door.left:before, .door.right:before,
+    .door.left:after, .door.right:after {
+        position: fixed; /* Safari에서 가끔 절대 위치가 문제를 일으킬 수 있음 */
     }
 }
