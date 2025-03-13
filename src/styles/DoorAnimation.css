@@ -170,66 +170,6 @@
     top: 0;
 }
 
-/* 문 손잡이 */
-.door-handle {
-    position: absolute;
-    top: 50%;
-    width: 12px;
-    height: 50px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 6px;
-    transform: translateY(-50%);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-.door.left .door-handle {
-    right: 30px;
-}
-
-.door.right .door-handle {
-    left: 30px;
-}
-
-/* 문 패턴 장식 */
-.door .pattern {
-    position: absolute;
-    top: 10%;
-    height: 80%;
-    width: 70%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-sizing: border-box;
-    z-index: 2;
-}
-
-.door.left .pattern {
-    left: 15%;
-}
-
-.door.right .pattern {
-    left: 15%;
-}
-
-/* 추가 패널 디자인 */
-.door .panel {
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.door .panel-top {
-    top: 15%;
-    left: 20%;
-    width: 60%;
-    height: 20%;
-}
-
-.door .panel-bottom {
-    top: 65%;
-    left: 20%;
-    width: 60%;
-    height: 20%;
-}
-
 /* 반응형 스타일 */
 @media (max-width: 768px) {
     .door-message h1 {
@@ -247,10 +187,6 @@
 
     .door.right.open {
         transform: perspective(800px) rotateY(105deg);
-    }
-
-    .door-handle {
-        height: 40px;
     }
 
     /* 모바일에서 버튼 위치 조정 */
