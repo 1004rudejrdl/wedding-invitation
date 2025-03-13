@@ -55,18 +55,18 @@ const DoorAnimation = ({ onComplete }) => {
         <div className={`door-container ${isComplete ? 'fade-out' : ''}`}>
             {/* 떠다니는 나뭇잎 */}
             <div className="leaves-container">
-                <div className="leaf leaf-1"></div>
-                <div className="leaf leaf-2"></div>
-                <div className="leaf leaf-3"></div>
-                <div className="leaf leaf-4"></div>
-                <div className="leaf leaf-5"></div>
-                <div className="leaf leaf-6"></div>
-                <div className="leaf leaf-7"></div>
-                <div className="leaf leaf-8"></div>
-                <div className="leaf leaf-9"></div>
-                <div className="leaf leaf-10"></div>
-                <div className="leaf leaf-11"></div>
-                <div className="leaf leaf-12"></div>
+                <div className="leaf maple-leaf leaf-1"></div>
+                <div className="leaf oval-leaf leaf-2"></div>
+                <div className="leaf round-leaf leaf-3"></div>
+                <div className="leaf long-leaf leaf-4"></div>
+                <div className="leaf maple-leaf leaf-5"></div>
+                <div className="leaf oval-leaf leaf-6"></div>
+                <div className="leaf round-leaf leaf-7"></div>
+                <div className="leaf long-leaf leaf-8"></div>
+                <div className="leaf maple-leaf leaf-9"></div>
+                <div className="leaf oval-leaf leaf-10"></div>
+                <div className="leaf round-leaf leaf-11"></div>
+                <div className="leaf long-leaf leaf-12"></div>
             </div>
 
             <div className="doors">
