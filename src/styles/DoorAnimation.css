@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff6f6;
+    background-color: #f0fff4; /* 연한 초록색 배경 */
     z-index: 1000;
     overflow: hidden;
     transition: opacity 0.5s ease;
@@ -24,7 +24,7 @@
     top: 20%;
     text-align: center;
     z-index: 1002;
-    color: #d4538b;
+    color: #2f855a; /* 초록색 글자 */
     padding: 0 20px;
     width: 100%;
 }
@@ -51,8 +51,8 @@
     top: 0;
     height: 100%;
     width: 50%;
-    background-color: #fbcfe8;
-    background-image: linear-gradient(120deg, #fbc4e6 0%, #fde9f5 100%);
+    background-color: #48bb78; /* 중간 초록색 */
+    background-image: linear-gradient(120deg, #38a169 0%, #68d391 100%); /* 초록색 그라데이션 */
     background-size: cover;
     transition: transform 2s cubic-bezier(0.86, 0, 0.07, 1);
     z-index: 1001;
@@ -76,7 +76,7 @@
     position: absolute;
     height: 100%;
     width: 10px;
-    background-color: #d4538b;
+    background-color: #276749; /* 진한 초록색 문 테두리 */
 }
 
 .door.left:before {
@@ -101,7 +101,7 @@
     z-index: 1002;
     padding: 12px 24px;
     font-size: 1rem;
-    background-color: #d4538b;
+    background-color: #38a169; /* 초록색 버튼 */
     color: white;
     border: none;
     border-radius: 30px;
@@ -114,6 +114,7 @@
 .open-button:hover, .open-button:active {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background-color: #2f855a; /* 버튼 호버 시 더 진한 초록색 */
 }
 
 .skip-button {
@@ -123,7 +124,7 @@
     padding: 8px 16px;
     font-size: 0.9rem;
     background-color: transparent;
-    color: #888;
+    color: #666;
     border: 1px solid #ddd;
     border-radius: 20px;
     cursor: pointer;
@@ -143,7 +144,7 @@
     width: 20px;
     height: 40px;
     border-radius: 10px;
-    background-color: #b83e7b;
+    background-color: #276749; /* 진한 초록색 손잡이 */
 }
 
 .door.left:after {
@@ -152,6 +153,17 @@
 
 .door.right:after {
     left: 30px;
+}
+
+/* 문에 장식 패턴 추가 */
+.door.left, .door.right {
+    background-image: repeating-linear-gradient(
+            45deg,
+            #48bb78,
+            #48bb78 10px,
+            #38a169 10px,
+            #38a169 20px
+    );
 }
 
 /* 반응형 스타일 */
