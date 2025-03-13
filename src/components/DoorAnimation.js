@@ -17,11 +17,11 @@ const DoorAnimation = ({ onComplete }) => {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // 페이지 로드 시 2초 후 문 열림 시작 (모바일에서는 시간 단축)
+    // 페이지 로드 시 1.5초 후 문 열림 시작 (모바일에서는 시간 단축)
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsOpening(true);
-        }, isMobile ? 500 : 1000);
+        }, isMobile ? 500 : 1500);
 
         return () => clearTimeout(timer);
     }, [isMobile]);
@@ -59,8 +59,12 @@ const DoorAnimation = ({ onComplete }) => {
             </div>
 
             <div className="doors">
-                <div className={`door left ${isOpening ? 'open' : ''}`}></div>
-                <div className={`door right ${isOpening ? 'open' : ''}`}></div>
+                <div className={`door left ${isOpening ? 'open' : ''}`}>
+                    <div className="pattern"></div>
+                </div>
+                <div className={`door right ${isOpening ? 'open' : ''}`}>
+                    <div className="pattern"></div>
+                </div>
             </div>
 
             {!isOpening && (

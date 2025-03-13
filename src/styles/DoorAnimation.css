@@ -54,24 +54,11 @@
     width: 50%;
     background-color: #024059; /* 테마 컬러 문 */
     background-image: linear-gradient(135deg, #024059 0%, #025e73 50%, #024059 100%); /* 깊이감 있는 그라데이션 */
-    background-size: cover;
     transition: transform 2s cubic-bezier(0.86, 0, 0.07, 1);
     z-index: 1001;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     transform-style: preserve-3d;
     will-change: transform;
-}
-
-.door:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50m-40 0a40 40 0 1 0 80 0a40 40 0 1 0 -80 0' fill='none' stroke='%23ffffff20' stroke-width='1'/%3E%3C/svg%3E");
-    background-size: 100px 100px;
-    opacity: 0.1;
 }
 
 .door.left {
@@ -86,20 +73,24 @@
     border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.door.left:before, .door.right:before {
+.door.left:before {
     content: '';
     position: absolute;
+    right: 0;
+    top: 0;
     height: 100%;
     width: 10px;
     background-color: #013243; /* 진한 네이비 테두리 */
 }
 
-.door.left:before {
-    right: 0;
-}
-
 .door.right:before {
+    content: '';
+    position: absolute;
     left: 0;
+    top: 0;
+    height: 100%;
+    width: 10px;
+    background-color: #013243; /* 진한 네이비 테두리 */
 }
 
 .door.left.open {
@@ -152,46 +143,7 @@
     background-color: rgba(2, 64, 89, 0.1);
 }
 
-/* 문 손잡이 스타일 */
-.door.left:after, .door.right:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 20px;
-    height: 50px;
-    border-radius: 10px;
-    background-color: #ffffff; /* 흰색 손잡이 */
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-}
-
-.door.left:after {
-    right: 30px;
-}
-
-.door.right:after {
-    left: 30px;
-}
-
-/* 문에 장식 패턴 추가 */
-.door.left, .door.right {
-    position: relative;
-    overflow: hidden;
-}
-
-.door.left:before, .door.right:before {
-    content: '';
-    position: absolute;
-    top: 10%;
-    height: 80%;
-    width: 80%;
-    left: 10%;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-sizing: border-box;
-    z-index: 2;
-}
-
-/* 문에 웨딩 링 아이콘 추가 */
+/* 문 손잡이와 아이콘 */
 .door.left:after {
     content: '💍';
     font-size: 30px;
@@ -199,8 +151,8 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 45%;
-    right: 45%;
+    top: 50%;
+    right: 15%;
     width: 60px;
     height: 60px;
     background-color: rgba(255, 255, 255, 0.15);
@@ -208,8 +160,6 @@
     color: white;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     transform: translateY(-50%);
-    box-shadow: none;
-    border: none;
 }
 
 .door.right:after {
@@ -219,8 +169,8 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 45%;
-    left: 45%;
+    top: 50%;
+    left: 15%;
     width: 60px;
     height: 60px;
     background-color: rgba(255, 255, 255, 0.15);
@@ -228,8 +178,18 @@
     color: white;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     transform: translateY(-50%);
-    box-shadow: none;
-    border: none;
+}
+
+/* 문 패턴 장식 */
+.door.left .pattern, .door.right .pattern {
+    position: absolute;
+    top: 10%;
+    height: 80%;
+    width: 80%;
+    left: 10%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    z-index: 2;
 }
 
 /* 반응형 스타일 */
@@ -252,17 +212,17 @@
     }
 
     .door.left:after, .door.right:after {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
         font-size: 24px;
     }
 
     .door.left:after {
-        right: 40%;
+        right: 10%;
     }
 
     .door.right:after {
-        left: 40%;
+        left: 10%;
     }
 
     /* 모바일에서 버튼 위치 조정 */
