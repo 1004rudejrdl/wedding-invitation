@@ -6,6 +6,25 @@ const DoorAnimation = ({ onComplete }) => {
     const [isComplete, setIsComplete] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
+    // 나뭇잎 위치 생성 함수
+    const createLeafPositions = () => {
+        const leaves = [];
+        const leafCount = 15; // 나뭇잎 개수
+
+        for (let i = 0; i < leafCount; i++) {
+            const left = Math.random() * 100; // 0-100% 범위의 랜덤한 좌측 위치
+            leaves.push({
+                id: i,
+                left: `${left}%`,
+                animationDelay: `${Math.random() * 15}s` // 0-15초 랜덤 딜레이
+            });
+        }
+
+        return leaves;
+    };
+
+    const [leaves] = useState(createLeafPositions());
+
     // 모바일 기기 감지
     useEffect(() => {
         const checkMobile = () => {
@@ -53,15 +72,23 @@ const DoorAnimation = ({ onComplete }) => {
 
     return (
         <div className={`door-container ${isComplete ? 'fade-out' : ''}`}>
+            {/* 떠다니는 나뭇잎 */}
+            {leaves.map(leaf => (
+                <div
+                    key={leaf.id}
+                    className="leaf"
+                    style={{
+                        left: leaf.left,
+                        animationDelay: leaf.animationDelay
+                    }}
+                />
+            ))}
+
             <div className="doors">
                 <div className={`door left ${isOpening ? 'open' : ''}`}>
-                    <div className="panel panel-top"></div>
-                    <div className="panel panel-bottom"></div>
                     <div className="door-edge"></div>
                 </div>
                 <div className={`door right ${isOpening ? 'open' : ''}`}>
-                    <div className="panel panel-top"></div>
-                    <div className="panel panel-bottom"></div>
                     <div className="door-edge"></div>
                 </div>
             </div>
