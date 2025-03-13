@@ -55,9 +55,13 @@ const DoorAnimation = ({ onComplete }) => {
         <div className={`door-container ${isComplete ? 'fade-out' : ''}`}>
             <div className="doors">
                 <div className={`door left ${isOpening ? 'open' : ''}`}>
+                    <div className="panel panel-top"></div>
+                    <div className="panel panel-bottom"></div>
                     <div className="door-edge"></div>
                 </div>
                 <div className={`door right ${isOpening ? 'open' : ''}`}>
+                    <div className="panel panel-top"></div>
+                    <div className="panel panel-bottom"></div>
                     <div className="door-edge"></div>
                 </div>
             </div>
