@@ -24,23 +24,24 @@
     top: 20%;
     text-align: center;
     z-index: 1002;
-    color: #293a22; /* 지정한 글씨 색상 */
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.9); /* 가독성 향상을 위한 그림자 */
+    color: #2e7939; /* 변경된 글씨 색상 */
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.95); /* 더 강한 그림자로 가독성 향상 */
     padding: 0 20px;
     width: 100%;
     transition: color 1s ease, text-shadow 1s ease;
 }
 
 .door-message h1 {
-    font-size: 2.2rem;
+    font-size: 2.3rem; /* 글씨 크기 증가 */
     margin-bottom: 1rem;
     font-family: 'Nanum Myeongjo', serif;
     font-weight: 600;
 }
 
 .door-message p {
-    font-size: 1.1rem;
+    font-size: 1.2rem; /* 글씨 크기 증가 */
     margin-bottom: 2rem;
+    font-weight: 500; /* 약간 더 굵게 */
 }
 
 .doors {
@@ -54,7 +55,7 @@
     top: 0;
     height: 100%;
     width: 50%;
-    background-color: #425936; /* 지정한 문 색상 */
+    background-color: #425936; /* 기존 문 색상 */
     background-image: linear-gradient(135deg, #425936 0%, #506843 50%, #425936 100%); /* 부드러운 그라데이션 */
     transition: transform 2s cubic-bezier(0.86, 0, 0.07, 1);
     z-index: 1001;
@@ -64,23 +65,7 @@
     overflow: hidden;
 }
 
-/* 사선 패턴 배경 - 나뭇잎 질감처럼 */
-.door::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background-image: repeating-linear-gradient(
-            45deg,
-            rgba(255, 255, 255, 0.07),
-            rgba(255, 255, 255, 0.07) 10px,
-            rgba(255, 255, 255, 0.03) 10px,
-            rgba(255, 255, 255, 0.03) 20px
-    );
-    z-index: -1;
-}
+/* 사선 패턴 제거됨 */
 
 .door.left {
     left: 0;
@@ -103,69 +88,155 @@
 }
 
 /* 떠다니는 나뭇잎 */
+.leaves-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1003;
+    pointer-events: none;
+}
+
 .leaf {
     position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #4d8f59; /* 나뭇잎 색상 변경 - 글씨 색상과 비슷하게 */
+    opacity: 0.6; /* 투명도 증가하여 더 잘 보이도록 */
+    display: block;
+    z-index: 1003;
+    animation: float-leaf 20s linear infinite;
+}
+
+.leaf:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #4d8f59;
+    transform: rotate(45deg);
+}
+
+.leaf-1 {
+    left: 10%;
+    top: -20px;
+}
+
+.leaf-2 {
+    left: 25%;
+    top: -20px;
     width: 15px;
     height: 15px;
-    background-color: rgba(255, 255, 255, 0.2);
-    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-    animation: float-leaf 15s linear infinite;
-    z-index: 1;
+    animation-delay: -5s;
+    animation-duration: 15s;
 }
 
-.leaf::after {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    right: 3px;
-    bottom: 3px;
-    background-color: rgba(255, 255, 255, 0.1);
-    clip-path: polygon(50% 15%, 85% 50%, 50% 85%, 15% 50%);
+.leaf-3 {
+    left: 40%;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    animation-delay: -2s;
+    animation-duration: 25s;
 }
 
-.leaf:nth-child(2n) {
-    width: 10px;
-    height: 10px;
-    animation-duration: 12s;
-    animation-delay: -3s;
-}
-
-.leaf:nth-child(3n) {
-    width: 8px;
-    height: 8px;
-    animation-duration: 10s;
-    animation-delay: -6s;
-}
-
-.leaf:nth-child(4n) {
-    width: 12px;
-    height: 12px;
+.leaf-4 {
+    left: 55%;
+    top: -20px;
+    width: 18px;
+    height: 18px;
+    animation-delay: -8s;
     animation-duration: 18s;
-    animation-delay: -9s;
 }
 
-.leaf:nth-child(5n) {
-    width: 7px;
-    height: 7px;
-    animation-duration: 14s;
+.leaf-5 {
+    left: 70%;
+    top: -20px;
+    width: 22px;
+    height: 22px;
     animation-delay: -12s;
+    animation-duration: 22s;
+}
+
+.leaf-6 {
+    left: 85%;
+    top: -20px;
+    width: 16px;
+    height: 16px;
+    animation-delay: -15s;
+    animation-duration: 16s;
+}
+
+.leaf-7 {
+    left: 18%;
+    top: -20px;
+    width: 14px;
+    height: 14px;
+    animation-delay: -7s;
+    animation-duration: 17s;
+}
+
+.leaf-8 {
+    left: 33%;
+    top: -20px;
+    width: 19px;
+    height: 19px;
+    animation-delay: -1s;
+    animation-duration: 23s;
+}
+
+.leaf-9 {
+    left: 48%;
+    top: -20px;
+    width: 21px;
+    height: 21px;
+    animation-delay: -9s;
+    animation-duration: 16s;
+}
+
+.leaf-10 {
+    left: 63%;
+    top: -20px;
+    width: 17px;
+    height: 17px;
+    animation-delay: -3s;
+    animation-duration: 19s;
+}
+
+.leaf-11 {
+    left: 78%;
+    top: -20px;
+    width: 23px;
+    height: 23px;
+    animation-delay: -13s;
+    animation-duration: 20s;
+}
+
+.leaf-12 {
+    left: 93%;
+    top: -20px;
+    width: 15px;
+    height: 15px;
+    animation-delay: -6s;
+    animation-duration: 21s;
 }
 
 @keyframes float-leaf {
     0% {
-        transform: translateY(-5%) translateX(-10%) rotate(0deg);
-        opacity: 0;
+        transform: translateY(0) rotate(0deg) scale(1);
     }
-    10% {
-        opacity: 1;
+    25% {
+        transform: translateY(25vh) translateX(20px) rotate(90deg) scale(0.9);
     }
-    90% {
-        opacity: 1;
+    50% {
+        transform: translateY(50vh) translateX(-20px) rotate(180deg) scale(1.1);
+    }
+    75% {
+        transform: translateY(75vh) translateX(20px) rotate(270deg) scale(0.9);
     }
     100% {
-        transform: translateY(105%) translateX(10%) rotate(360deg);
-        opacity: 0;
+        transform: translateY(105vh) translateX(0) rotate(360deg) scale(1);
     }
 }
 
@@ -175,7 +246,7 @@
     z-index: 1002;
     padding: 12px 30px;
     font-size: 1rem;
-    background-color: #425936; /* 버튼 색상 문과 동일하게 */
+    background-color: #2e7939; /* 버튼 색상 글씨 색상과 동일하게 */
     color: white;
     border: none;
     border-radius: 30px;
@@ -189,7 +260,7 @@
 .open-button:hover, .open-button:active {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    background-color: #506843; /* 버튼 호버 시 약간 밝은 색상 */
+    background-color: #38903f; /* 버튼 호버 시 약간 밝은 색상 */
 }
 
 .skip-button {
@@ -199,8 +270,8 @@
     padding: 8px 16px;
     font-size: 0.9rem;
     background-color: transparent;
-    color: #293a22;
-    border: 1px solid #293a22;
+    color: #2e7939; /* 스킵 버튼 색상도 변경 */
+    border: 1px solid #2e7939;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -208,7 +279,7 @@
 }
 
 .skip-button:hover, .skip-button:active {
-    background-color: rgba(41, 58, 34, 0.1);
+    background-color: rgba(46, 121, 57, 0.1);
 }
 
 /* 문 테두리 */
@@ -233,11 +304,11 @@
 /* 반응형 스타일 */
 @media (max-width: 768px) {
     .door-message h1 {
-        font-size: 1.6rem;
+        font-size: 1.8rem; /* 모바일에서도 더 크게 */
     }
 
     .door-message p {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     /* 모바일에서 애니메이션 최적화 */
