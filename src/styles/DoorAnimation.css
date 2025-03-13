@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #e6f2f5; /* 매우 연한 하늘색 배경 */
+    background-color: #e6f2f5; /* 연한 하늘색 배경 */
     z-index: 1000;
     overflow: hidden;
     transition: opacity 0.5s ease;
@@ -24,20 +24,29 @@
     top: 20%;
     text-align: center;
     z-index: 1002;
-    color: #024059; /* 테마 컬러 */
+    color: #ffffff; /* 초기 흰색 글자 */
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 0, 0, 0.4); /* 그림자로 가독성 향상 */
     padding: 0 20px;
     width: 100%;
+    transition: color 1s ease, text-shadow 1s ease;
 }
 
-.door-message h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-family: 'Nanum Myeongjo', serif;
+/* 문이 열릴 때 글씨 색상 변경 */
+.doors .door.open ~ .door-message,
+.door.open ~ .door-message {
+    color: #024059; /* 문이 열릴 때 원래 색상 */
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
+.door-message h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    font-family: 'Nanum Myeongjo', serif;
+    font-weight: 600;
+}
+
 .door-message p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-bottom: 2rem;
 }
 
@@ -59,6 +68,25 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     transform-style: preserve-3d;
     will-change: transform;
+    overflow: hidden; /* 사선 패턴이 넘치지 않도록 */
+}
+
+/* 사선 패턴 배경 */
+.door::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: repeating-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.1) 10px,
+            rgba(255, 255, 255, 0.02) 10px,
+            rgba(255, 255, 255, 0.02) 20px
+    );
+    z-index: -1;
 }
 
 .door.left {
@@ -71,26 +99,6 @@
     right: 0;
     transform-origin: right;
     border-left: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.door.left:before {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 10px;
-    background-color: #013243; /* 진한 네이비 테두리 */
-}
-
-.door.right:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 10px;
-    background-color: #013243; /* 진한 네이비 테두리 */
 }
 
 .door.left.open {
@@ -143,63 +151,93 @@
     background-color: rgba(2, 64, 89, 0.1);
 }
 
-/* 문 손잡이와 아이콘 */
-.door.left:after {
-    content: '💍';
-    font-size: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* 문 테두리 */
+.door-edge {
+    content: '';
     position: absolute;
-    top: 50%;
-    right: 15%;
-    width: 60px;
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    color: white;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    transform: translateY(-50%);
+    height: 100%;
+    width: 10px;
+    background-color: #013243; /* 진한 네이비 테두리 */
 }
 
-.door.right:after {
-    content: '💐';
-    font-size: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.door.left .door-edge {
+    right: 0;
+    top: 0;
+}
+
+.door.right .door-edge {
+    left: 0;
+    top: 0;
+}
+
+/* 문 손잡이 */
+.door-handle {
     position: absolute;
     top: 50%;
-    left: 15%;
-    width: 60px;
-    height: 60px;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    color: white;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    width: 12px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 6px;
     transform: translateY(-50%);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.door.left .door-handle {
+    right: 30px;
+}
+
+.door.right .door-handle {
+    left: 30px;
 }
 
 /* 문 패턴 장식 */
-.door.left .pattern, .door.right .pattern {
+.door .pattern {
     position: absolute;
     top: 10%;
     height: 80%;
-    width: 80%;
-    left: 10%;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    width: 70%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     box-sizing: border-box;
     z-index: 2;
+}
+
+.door.left .pattern {
+    left: 15%;
+}
+
+.door.right .pattern {
+    left: 15%;
+}
+
+/* 추가 패널 디자인 */
+.door .panel {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.door .panel-top {
+    top: 15%;
+    left: 20%;
+    width: 60%;
+    height: 20%;
+}
+
+.door .panel-bottom {
+    top: 65%;
+    left: 20%;
+    width: 60%;
+    height: 20%;
 }
 
 /* 반응형 스타일 */
 @media (max-width: 768px) {
     .door-message h1 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     .door-message p {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
     }
 
     /* 모바일에서 애니메이션 최적화 */
@@ -211,18 +249,8 @@
         transform: perspective(800px) rotateY(105deg);
     }
 
-    .door.left:after, .door.right:after {
-        width: 45px;
-        height: 45px;
-        font-size: 24px;
-    }
-
-    .door.left:after {
-        right: 10%;
-    }
-
-    .door.right:after {
-        left: 10%;
+    .door-handle {
+        height: 40px;
     }
 
     /* 모바일에서 버튼 위치 조정 */

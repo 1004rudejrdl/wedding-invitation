@@ -53,18 +53,26 @@ const DoorAnimation = ({ onComplete }) => {
 
     return (
         <div className={`door-container ${isComplete ? 'fade-out' : ''}`}>
-            <div className="door-message">
-                <h1>우리 결혼합니다</h1>
-                <p>아래의 버튼을 눌러 초대장을 열어주세요</p>
-            </div>
-
             <div className="doors">
                 <div className={`door left ${isOpening ? 'open' : ''}`}>
                     <div className="pattern"></div>
+                    <div className="panel panel-top"></div>
+                    <div className="panel panel-bottom"></div>
+                    <div className="door-edge"></div>
+                    <div className="door-handle"></div>
                 </div>
                 <div className={`door right ${isOpening ? 'open' : ''}`}>
                     <div className="pattern"></div>
+                    <div className="panel panel-top"></div>
+                    <div className="panel panel-bottom"></div>
+                    <div className="door-edge"></div>
+                    <div className="door-handle"></div>
                 </div>
+            </div>
+
+            <div className="door-message">
+                <h1>우리 결혼합니다</h1>
+                <p>아래의 버튼을 눌러 초대장을 열어주세요</p>
             </div>
 
             {!isOpening && (
