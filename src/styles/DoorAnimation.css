@@ -24,7 +24,7 @@
     top: 20%;
     text-align: center;
     z-index: 1002;
-    color: #024059; /* 네이비 글씨 색상 */
+    color: #024059; /* 이전 글씨 색상(네이비) */
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* 가독성 향상을 위한 그림자 */
     padding: 0 20px;
     width: 100%;
@@ -54,8 +54,8 @@
     top: 0;
     height: 100%;
     width: 50%;
-    background-color: #376D7D; /* 틸블루 문 색상 */
-    background-image: linear-gradient(135deg, #376D7D 0%, #447d8e 50%, #376D7D 100%); /* 깊이감 있는 그라데이션 */
+    background-color: #2987a9; /* 문 색상 #2987a9 */
+    background-image: linear-gradient(135deg, #2987a9 0%, #349abe 50%, #2987a9 100%); /* 깊이감 있는 그라데이션 */
     transition: transform 2s cubic-bezier(0.86, 0, 0.07, 1);
     z-index: 1001;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -64,7 +64,7 @@
     overflow: hidden; /* 사선 패턴이 넘치지 않도록 */
 }
 
-/* 사선 패턴 배경 */
+/* 사선 패턴 배경 - 더 연한 버전 */
 .door::before {
     content: '';
     position: absolute;
@@ -74,10 +74,10 @@
     height: 200%;
     background-image: repeating-linear-gradient(
             45deg,
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.12) 10px,
-            rgba(255, 255, 255, 0.04) 10px,
-            rgba(255, 255, 255, 0.04) 20px
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.08) 10px,
+            rgba(255, 255, 255, 0.03) 10px,
+            rgba(255, 255, 255, 0.03) 20px
     );
     z-index: -1;
 }
@@ -108,7 +108,7 @@
     z-index: 1002;
     padding: 12px 30px;
     font-size: 1rem;
-    background-color: #376D7D; /* 문과 같은 색상의 버튼 */
+    background-color: #2987a9; /* 버튼 색상 문과 동일하게 */
     color: white;
     border: none;
     border-radius: 30px;
@@ -122,7 +122,7 @@
 .open-button:hover, .open-button:active {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    background-color: #447d8e; /* 버튼 호버 시 약간 밝은 틸블루 */
+    background-color: #349abe; /* 버튼 호버 시 약간 밝은 색상 */
 }
 
 .skip-button {
@@ -132,8 +132,8 @@
     padding: 8px 16px;
     font-size: 0.9rem;
     background-color: transparent;
-    color: #376D7D;
-    border: 1px solid #376D7D;
+    color: #024059; /* 스킵 버튼 색상 글씨와 동일하게 */
+    border: 1px solid #024059;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -141,7 +141,7 @@
 }
 
 .skip-button:hover, .skip-button:active {
-    background-color: rgba(55, 109, 125, 0.1);
+    background-color: rgba(2, 64, 89, 0.1);
 }
 
 /* 문 테두리 */
@@ -150,7 +150,7 @@
     position: absolute;
     height: 100%;
     width: 10px;
-    background-color: #2a5663; /* 더 진한 틸블루 테두리 */
+    background-color: #1d6a85; /* 더 진한 테두리 색상 */
 }
 
 .door.left .door-edge {
