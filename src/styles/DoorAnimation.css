@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f0fff4; /* 연한 초록색 배경 */
+    background-color: #e6f2f5; /* 매우 연한 하늘색 배경 */
     z-index: 1000;
     overflow: hidden;
     transition: opacity 0.5s ease;
@@ -24,7 +24,7 @@
     top: 20%;
     text-align: center;
     z-index: 1002;
-    color: #2f855a; /* 초록색 글자 */
+    color: #024059; /* 테마 컬러 */
     padding: 0 20px;
     width: 100%;
 }
@@ -33,6 +33,7 @@
     font-size: 2rem;
     margin-bottom: 1rem;
     font-family: 'Nanum Myeongjo', serif;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .door-message p {
@@ -51,24 +52,38 @@
     top: 0;
     height: 100%;
     width: 50%;
-    background-color: #48bb78; /* 중간 초록색 */
-    background-image: linear-gradient(120deg, #38a169 0%, #68d391 100%); /* 초록색 그라데이션 */
+    background-color: #024059; /* 테마 컬러 문 */
+    background-image: linear-gradient(135deg, #024059 0%, #025e73 50%, #024059 100%); /* 깊이감 있는 그라데이션 */
     background-size: cover;
     transition: transform 2s cubic-bezier(0.86, 0, 0.07, 1);
     z-index: 1001;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     transform-style: preserve-3d;
     will-change: transform;
+}
+
+.door:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50m-40 0a40 40 0 1 0 80 0a40 40 0 1 0 -80 0' fill='none' stroke='%23ffffff20' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 100px 100px;
+    opacity: 0.1;
 }
 
 .door.left {
     left: 0;
     transform-origin: left;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .door.right {
     right: 0;
     transform-origin: right;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .door.left:before, .door.right:before {
@@ -76,7 +91,7 @@
     position: absolute;
     height: 100%;
     width: 10px;
-    background-color: #276749; /* 진한 초록색 문 테두리 */
+    background-color: #013243; /* 진한 네이비 테두리 */
 }
 
 .door.left:before {
@@ -99,9 +114,9 @@
     position: absolute;
     bottom: 15%;
     z-index: 1002;
-    padding: 12px 24px;
+    padding: 12px 30px;
     font-size: 1rem;
-    background-color: #38a169; /* 초록색 버튼 */
+    background-color: #024059; /* 테마 컬러 버튼 */
     color: white;
     border: none;
     border-radius: 30px;
@@ -109,12 +124,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
+    letter-spacing: 1px;
 }
 
 .open-button:hover, .open-button:active {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    background-color: #2f855a; /* 버튼 호버 시 더 진한 초록색 */
+    background-color: #025e73; /* 버튼 호버 시 밝은색 */
 }
 
 .skip-button {
@@ -124,8 +140,8 @@
     padding: 8px 16px;
     font-size: 0.9rem;
     background-color: transparent;
-    color: #666;
-    border: 1px solid #ddd;
+    color: #024059;
+    border: 1px solid #024059;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -133,7 +149,7 @@
 }
 
 .skip-button:hover, .skip-button:active {
-    background-color: #f5f5f5;
+    background-color: rgba(2, 64, 89, 0.1);
 }
 
 /* 문 손잡이 스타일 */
@@ -142,9 +158,11 @@
     position: absolute;
     top: 50%;
     width: 20px;
-    height: 40px;
+    height: 50px;
     border-radius: 10px;
-    background-color: #276749; /* 진한 초록색 손잡이 */
+    background-color: #ffffff; /* 흰색 손잡이 */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .door.left:after {
@@ -157,13 +175,61 @@
 
 /* 문에 장식 패턴 추가 */
 .door.left, .door.right {
-    background-image: repeating-linear-gradient(
-            45deg,
-            #48bb78,
-            #48bb78 10px,
-            #38a169 10px,
-            #38a169 20px
-    );
+    position: relative;
+    overflow: hidden;
+}
+
+.door.left:before, .door.right:before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    height: 80%;
+    width: 80%;
+    left: 10%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+/* 문에 웨딩 링 아이콘 추가 */
+.door.left:after {
+    content: '💍';
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 45%;
+    right: 45%;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(-50%);
+    box-shadow: none;
+    border: none;
+}
+
+.door.right:after {
+    content: '💐';
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(-50%);
+    box-shadow: none;
+    border: none;
 }
 
 /* 반응형 스타일 */
@@ -186,16 +252,17 @@
     }
 
     .door.left:after, .door.right:after {
-        width: 16px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
     }
 
     .door.left:after {
-        right: 20px;
+        right: 40%;
     }
 
     .door.right:after {
-        left: 20px;
+        left: 40%;
     }
 
     /* 모바일에서 버튼 위치 조정 */
@@ -214,10 +281,5 @@
 @supports (-webkit-touch-callout: none) {
     .door.left.open, .door.right.open {
         transition: transform 1.5s cubic-bezier(0.86, 0, 0.07, 1);
-    }
-
-    .door.left:before, .door.right:before,
-    .door.left:after, .door.right:after {
-        position: fixed; /* Safari에서 가끔 절대 위치가 문제를 일으킬 수 있음 */
     }
 }
